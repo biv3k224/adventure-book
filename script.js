@@ -187,6 +187,23 @@ document.addEventListener('DOMContentLoaded', function() {
 
     ];
 
+    // Track when the letter is opened
+document.querySelector('.letter-icon').addEventListener('click', () => {
+    gtag('event', 'open_letter', {
+      'event_category': 'engagement'
+    });
+  });
+  
+  // Track image clicks in the timeline
+  document.querySelectorAll('.memory-content img').forEach(img => {
+    img.addEventListener('click', () => {
+      gtag('event', 'view_memory', {
+        'event_category': 'engagement',
+        'event_label': img.alt
+      });
+    });
+  });
+
     // Populate floating photos in intro section
     populateFloatingPhotos(memories);
     
