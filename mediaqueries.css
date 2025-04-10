@@ -1,0 +1,221 @@
+/* mediaqueries.css - Mobile Optimizations with Original Colors */
+
+/* Small devices (portrait phones, less than 576px) */
+@media (max-width: 575.98px) {
+    /* Performance optimizations */
+    * {
+        -webkit-tap-highlight-color: transparent;
+    }
+    
+    /* Layout adjustments */
+    body {
+        font-size: 14px;
+    }
+    
+    header {
+        padding: 1rem 0;
+    }
+    
+    header h1 {
+        font-size: 2rem;
+        margin-bottom: 0.5rem;
+    }
+    
+    .intro {
+        min-height: 50vh;
+        padding: 1rem;
+    }
+    
+    .intro-text h2 {
+        font-size: 1.5rem;
+    }
+    
+    .floating-photos {
+        margin-top: 1rem;
+    }
+    
+    .floating-photos img {
+        width: 80px;
+        height: 80px;
+    }
+    
+    /* Timeline adjustments */
+    .timeline {
+        padding: 1rem;
+    }
+    
+    .timeline::after {
+        left: 31px;
+    }
+    
+    .memory {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 15px;
+    }
+    
+    .memory::before {
+        left: 60px;
+        border: medium solid var(--light-pink);
+        border-width: 10px 10px 10px 0;
+        border-color: transparent var(--light-pink) transparent transparent;
+    }
+    
+    .left::after, .right::after {
+        left: 15px;
+    }
+    
+    .right {
+        left: 0%;
+    }
+    
+    .memory-content {
+        padding: 15px;
+    }
+    
+    /* Letter icon adjustments */
+    .letter-icon {
+        width: 50px;
+        height: 50px;
+        bottom: 20px;
+        right: 20px;
+    }
+    
+    .letter-icon span {
+        font-size: 24px;
+    }
+    
+    /* Letter modal adjustments */
+    .letter-content {
+        width: 90%;
+        margin: 20% auto;
+        padding: 20px;
+    }
+    
+    .letter-text {
+        padding: 0;
+        font-size: 1rem;
+    }
+    
+    /* Footer optimizations */
+    footer {
+        padding: 1rem;
+        font-size: 1rem;
+    }
+}
+
+/* Small devices (landscape phones, 576px and up) */
+@media (min-width: 576px) and (max-width: 767.98px) {
+    header h1 {
+        font-size: 2.2rem;
+    }
+    
+    .intro-text h2 {
+        font-size: 1.8rem;
+    }
+    
+    .floating-photos img {
+        width: 90px;
+        height: 90px;
+    }
+}
+
+/* Medium devices (tablets, 768px and up) */
+@media (min-width: 768px) and (max-width: 991.98px) {
+    /* Performance optimizations */
+    .floating-photos img {
+        will-change: transform;
+    }
+    
+    header h1 {
+        font-size: 2.8rem;
+    }
+    
+    .intro-text h2 {
+        font-size: 2rem;
+    }
+    
+    .memory-content {
+        padding: 15px 20px;
+    }
+    
+    .timeline {
+        padding: 1.5rem;
+    }
+    
+    .letter-content {
+        width: 70%;
+    }
+}
+
+/* Performance Optimizations for Mobile */
+@media (max-width: 991.98px) {
+    /* Optimize animations */
+    .floating-photos img {
+        animation: float 8s ease-in-out infinite;
+    }
+    
+    /* Reduce the number of floating hearts for performance */
+    .hearts-container {
+        display: none;
+    }
+    
+    /* Optimize image loading */
+    .memory-content img {
+        loading: lazy;
+    }
+    
+    /* Simplify the pulse animation */
+    .pulse {
+        animation: pulse 3s ease-out infinite;
+    }
+}
+
+/* Large devices (desktops, 992px and up) */
+@media (min-width: 992px) {
+    /* Keep your original desktop styles */
+}
+
+/* Extra large devices (large desktops, 1200px and up) */
+@media (min-width: 1200px) {
+    /* Keep your original desktop styles */
+}
+
+/* Touch Device Optimizations */
+@media (pointer: coarse) {
+    /* Increase tap targets */
+    .letter-icon {
+        width: 60px;
+        height: 60px;
+    }
+    
+    .close-letter {
+        padding: 15px;
+    }
+    
+    /* Prevent accidental clicks on close buttons */
+    .close, .close-letter {
+        min-width: 44px;
+        min-height: 44px;
+    }
+}
+
+/* Reduced motion preference */
+@media (prefers-reduced-motion: reduce) {
+    * {
+        animation: none !important;
+        transition: none !important;
+    }
+    
+    .letter-modal.show .letter-content {
+        animation: none;
+    }
+    
+    .letter-icon {
+        animation: none;
+    }
+    
+    .pulse {
+        display: none;
+    }
+}

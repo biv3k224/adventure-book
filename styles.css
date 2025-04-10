@@ -1,0 +1,536 @@
+:root {
+    --primary-pink: #ff6b8b;
+    --secondary-pink: #ff8fab;
+    --light-pink: #ffb3c6;
+    --lighter-pink: #ffd6e0;
+    --dark-pink: #c9184a;
+    --white: #fff;
+    --black: #333;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+body {
+    font-family: 'Montserrat', sans-serif;
+    background-color: var(--lighter-pink);
+    color: var(--black);
+    line-height: 1.6;
+    overflow-x: hidden;
+}
+
+/* Loader animation */
+.loader {
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: var(--lighter-pink);
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    z-index: 9999;
+    transition: opacity 0.5s, visibility 0.5s;
+}
+
+.loader.fade-out {
+    opacity: 0;
+    visibility: hidden;
+}
+
+.heart {
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-pink);
+    transform: rotate(45deg);
+    animation: heartbeat 1.4s linear infinite;
+    position: relative;
+}
+
+.heart:before, .heart:after {
+    content: '';
+    width: 50px;
+    height: 50px;
+    background-color: var(--primary-pink);
+    border-radius: 50%;
+    position: absolute;
+}
+
+.heart:before {
+    top: -25px;
+    left: 0;
+}
+
+.heart:after {
+    top: 0;
+    left: -25px;
+}
+
+@keyframes heartbeat {
+    0% { transform: rotate(45deg) scale(1); }
+    25% { transform: rotate(45deg) scale(1.1); }
+    30% { transform: rotate(45deg) scale(1.4); }
+    50% { transform: rotate(45deg) scale(1.2); }
+    70% { transform: rotate(45deg) scale(1.4); }
+    100% { transform: rotate(45deg) scale(1); }
+}
+
+header {
+    text-align: center;
+    padding: 2rem 0;
+    background: linear-gradient(135deg, var(--primary-pink), var(--secondary-pink));
+    color: var(--white);
+    position: relative;
+    overflow: hidden;
+}
+
+header h1 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 3.5rem;
+    margin-bottom: 1rem;
+    text-shadow: 2px 2px 4px rgba(0, 0, 0, 0.2);
+}
+
+.hearts-container {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    top: 0;
+    left: 0;
+    pointer-events: none;
+    z-index: 1;
+}
+
+/* Intro section */
+.intro {
+    min-height: 60vh;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
+    padding: 2rem;
+    position: relative;
+}
+
+.intro-text h2 {
+    font-family: 'Dancing Script', cursive;
+    font-size: 2.5rem;
+    color: var(--dark-pink);
+    margin-bottom: 1rem;
+}
+
+.intro-text p {
+    font-size: 1.2rem;
+    color: var(--black);
+}
+
+.floating-photos {
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 1rem;
+    margin-top: 2rem;
+    perspective: 1000px;
+}
+
+.floating-photos img {
+    width: 120px;
+    height: 120px;
+    object-fit: cover;
+    border-radius: 10px;
+    box-shadow: 0 5px 15px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease, box-shadow 0.3s ease;
+    animation: float 6s ease-in-out infinite;
+}
+
+.floating-photos img:hover {
+    transform: scale(1.1) rotate(5deg);
+    box-shadow: 0 8px 25px rgba(0, 0, 0, 0.2);
+    z-index: 10;
+}
+
+@keyframes float {
+    0%, 100% { transform: translateY(0) rotate(0deg); }
+    50% { transform: translateY(-20px) rotate(5deg); }
+}
+
+/* Timeline section */
+.timeline {
+    position: relative;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 2rem;
+}
+
+.timeline::after {
+    content: '';
+    position: absolute;
+    width: 6px;
+    background-color: var(--primary-pink);
+    top: 0;
+    bottom: 0;
+    left: 50%;
+    margin-left: -3px;
+    border-radius: 10px;
+}
+
+.memory {
+    padding: 10px 40px;
+    position: relative;
+    background-color: inherit;
+    width: 50%;
+    opacity: 0;
+    transform: translateY(20px);
+    transition: opacity 0.5s ease, transform 0.5s ease;
+}
+
+.memory.visible {
+    opacity: 1;
+    transform: translateY(0);
+}
+
+.memory::after {
+    content: '';
+    position: absolute;
+    width: 25px;
+    height: 25px;
+    right: -17px;
+    background-color: var(--white);
+    border: 4px solid var(--primary-pink);
+    top: 15px;
+    border-radius: 50%;
+    z-index: 1;
+}
+
+.left {
+    left: 0;
+}
+
+.right {
+    left: 50%;
+}
+
+.left::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    right: 30px;
+    border: medium solid var(--light-pink);
+    border-width: 10px 0 10px 10px;
+    border-color: transparent transparent transparent var(--light-pink);
+}
+
+.right::before {
+    content: " ";
+    height: 0;
+    position: absolute;
+    top: 22px;
+    width: 0;
+    z-index: 1;
+    left: 30px;
+    border: medium solid var(--light-pink);
+    border-width: 10px 10px 10px 0;
+    border-color: transparent var(--light-pink) transparent transparent;
+}
+
+.right::after {
+    left: -16px;
+}
+
+.memory-content {
+    padding: 20px 30px;
+    background-color: var(--white);
+    position: relative;
+    border-radius: 6px;
+    box-shadow: 0 3px 10px rgba(0, 0, 0, 0.1);
+    transition: transform 0.3s ease;
+}
+
+.memory-content:hover {
+    transform: translateY(-5px);
+}
+
+.memory-content h2 {
+    color: var(--dark-pink);
+    margin-bottom: 0.5rem;
+}
+
+.memory-content .date {
+    color: var(--secondary-pink);
+    font-weight: bold;
+    margin-bottom: 0.5rem;
+}
+
+.memory-content p {
+    margin-bottom: 1rem;
+}
+
+.memory-content img {
+    width: 100%;
+    border-radius: 8px;
+    margin-bottom: 1rem;
+    transition: transform 0.3s ease;
+    cursor: pointer;
+}
+
+.memory-content img:hover {
+    transform: scale(1.03);
+}
+
+/* Modal for enlarged images */
+.modal {
+    display: none;
+    position: fixed;
+    z-index: 100;
+    left: 0;
+    top: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    overflow: auto;
+}
+
+.modal-content {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    align-items: center;
+    height: 100%;
+    padding: 20px;
+}
+
+.modal-image {
+    max-width: 80%;
+    max-height: 80%;
+    object-fit: contain;
+    border-radius: 8px;
+}
+
+.modal-caption {
+    color: var(--white);
+    text-align: center;
+    margin-top: 1rem;
+    font-size: 1.2rem;
+}
+
+.close {
+    position: absolute;
+    top: 20px;
+    right: 30px;
+    color: var(--white);
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+}
+
+.close:hover {
+    color: var(--light-pink);
+}
+
+/* Footer */
+footer {
+    text-align: center;
+    padding: 2rem;
+    background-color: var(--primary-pink);
+    color: var(--white);
+    font-family: 'Dancing Script', cursive;
+    font-size: 1.2rem;
+}
+
+/* Letter Icon Styles */
+.letter-icon {
+    position: fixed;
+    bottom: 30px;
+    right: 30px;
+    width: 60px;
+    height: 60px;
+    background-color: var(--primary-pink);
+    border-radius: 50%;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    cursor: pointer;
+    box-shadow: 0 4px 15px rgba(0, 0, 0, 0.2);
+    z-index: 99;
+    transition: all 0.3s ease;
+}
+
+.letter-icon:hover {
+    transform: scale(1.1) rotate(-10deg);
+    background-color: var(--dark-pink);
+}
+
+.letter-icon span {
+    font-size: 30px;
+}
+
+/* Pulse animation for letter icon */
+.pulse {
+    position: absolute;
+    width: 100%;
+    height: 100%;
+    background-color: var(--primary-pink);
+    border-radius: 50%;
+    opacity: 0.7;
+    animation: pulse 2s ease-out infinite;
+    z-index: -1;
+}
+
+@keyframes pulse {
+    0% { transform: scale(1); opacity: 0.7; }
+    70% { transform: scale(1.3); opacity: 0; }
+    100% { transform: scale(1); opacity: 0; }
+}
+
+/* Letter Modal Styles */
+.letter-modal {
+    display: none;
+    position: fixed;
+    top: 0;
+    left: 0;
+    width: 100%;
+    height: 100%;
+    background-color: rgba(0, 0, 0, 0.8);
+    z-index: 100;
+    overflow: auto;
+    opacity: 0;
+    transition: opacity 0.3s ease;
+}
+
+.letter-modal.show {
+    opacity: 1;
+}
+
+.letter-content {
+    background-color: #fff9fa;
+    margin: 5% auto;
+    padding: 30px;
+    width: 80%;
+    max-width: 600px;
+    border-radius: 10px;
+    box-shadow: 0 5px 30px rgba(0, 0, 0, 0.3);
+    position: relative;
+    border: 2px solid var(--light-pink);
+    transform: scale(0.9);
+    transition: all 0.4s ease;
+    opacity: 0;
+}
+
+.letter-modal.show .letter-content {
+    transform: scale(1);
+    opacity: 1;
+}
+
+.letter-content h2 {
+    color: var(--dark-pink);
+    font-family: 'Dancing Script', cursive;
+    text-align: center;
+    margin-bottom: 20px;
+    font-size: 2.5rem;
+}
+
+.letter-text {
+    font-size: 1.1rem;
+    line-height: 1.8;
+    color: #555;
+    padding: 0 20px;
+}
+
+.letter-text p {
+    margin-bottom: 15px;
+}
+
+.close-letter {
+    position: absolute;
+    top: 15px;
+    right: 25px;
+    color: var(--dark-pink);
+    font-size: 35px;
+    font-weight: bold;
+    cursor: pointer;
+    transition: transform 0.3s ease;
+}
+
+.close-letter:hover {
+    color: var(--primary-pink);
+    transform: rotate(90deg);
+}
+
+/* Decorative elements for the letter */
+.letter-content::before {
+    content: "";
+    position: absolute;
+    top: 10px;
+    left: 10px;
+    right: 10px;
+    bottom: 10px;
+    border: 1px dashed var(--light-pink);
+    border-radius: 5px;
+    pointer-events: none;
+}
+
+/* Heart paper texture */
+.letter-content::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 0;
+    right: 0;
+    bottom: 0;
+    background-image: url("data:image/svg+xml,%3Csvg width='100' height='100' viewBox='0 0 100 100' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M11 18c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm48 25c3.866 0 7-3.134 7-7s-3.134-7-7-7-7 3.134-7 7 3.134 7 7 7zm-43-7c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm63 31c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM34 90c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zm56-76c1.657 0 3-1.343 3-3s-1.343-3-3-3-3 1.343-3 3 1.343 3 3 3zM12 86c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm28-65c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm23-11c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-6 60c2.21 0 4-1.79 4-4s-1.79-4-4-4-4 1.79-4 4 1.79 4 4 4zm29 22c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zM32 63c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm57-13c2.76 0 5-2.24 5-5s-2.24-5-5-5-5 2.24-5 5 2.24 5 5 5zm-9-21c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM60 91c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM35 41c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2zM12 60c1.105 0 2-.895 2-2s-.895-2-2-2-2 .895-2 2 .895 2 2 2z' fill='%23ffb3c6' fill-opacity='0.1' fill-rule='evenodd'/%3E%3C/svg%3E");
+    opacity: 0.3;
+    pointer-events: none;
+}
+
+/* Responsive design */
+@media screen and (max-width: 768px) {
+    header h1 {
+        font-size: 2.5rem;
+    }
+    
+    .intro-text h2 {
+        font-size: 2rem;
+    }
+    
+    .timeline::after {
+        left: 31px;
+    }
+    
+    .memory {
+        width: 100%;
+        padding-left: 70px;
+        padding-right: 25px;
+    }
+    
+    .memory::before {
+        left: 60px;
+        border: medium solid var(--light-pink);
+        border-width: 10px 10px 10px 0;
+        border-color: transparent var(--light-pink) transparent transparent;
+    }
+    
+    .left::after, .right::after {
+        left: 15px;
+    }
+    
+    .right {
+        left: 0%;
+    }
+    
+    .letter-content {
+        width: 90%;
+        padding: 20px;
+    }
+    
+    .letter-text {
+        padding: 0 10px;
+    }
+}
