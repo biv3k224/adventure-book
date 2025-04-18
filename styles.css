@@ -489,6 +489,20 @@ footer {
     opacity: 0.3;
     pointer-events: none;
 }
+header h1, 
+header h2.subtitle {
+    font-family: 'Dancing Script', cursive; /* Same font as h1 */
+    text-align: center;
+    color: white; /* Or whatever color matches your h1 */
+    margin: 0;
+    padding: 0;
+}
+
+header h2.subtitle {
+    font-size: 2rem; /* Slightly smaller than h1 */
+    margin-top: 0.5rem; /* Space between h1 and h2 */
+    font-weight: 700;
+}
 
 /* Responsive design */
 @media screen and (max-width: 768px) {
